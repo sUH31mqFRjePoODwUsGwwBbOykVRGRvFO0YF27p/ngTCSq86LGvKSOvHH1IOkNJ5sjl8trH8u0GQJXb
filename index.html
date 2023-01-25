@@ -1,0 +1,76 @@
+<form action="https://docs.google.com/forms/d/e/1FAIpQLScZReoQqewaovPONJ5nSQjGSAsLiyr8a-EIbXAnfDW32sshlg/formResponse" method="POST" target="hidden_iframe" onsubmit="submitForm()">
+  <label>店舗 名称 金額 記号:</label><input type="text" name="entry.1038119712"><br>
+  <label>決済手段:</label>
+  <select name="entry.155554485" id="pulldown" onchange="showOtherOption(this.value)">
+    <option value="6gram">MIXIM</option>
+    <option value="Suica">Suica</option>
+    <option value="PayPay">PayPay</option>
+    <option value="エポス">エポス</option>
+    <option value="その他">その他</option>
+    <option value="現金">現金</option> 
+    <option value="Revolut">Revolut</option>
+    <option value="セゾンパール">セゾンパール</option>
+    <option value="アマギフ">アマギフ</option>
+    <option value="親（借金）">借金</option>
+    <option value="三井住友銀行">三井住友銀行</option>   
+  </select><br>
+  <div id="otherOption" style="display:none">
+    <label>その他決済:</label><input type="text" name="entry.155554485"><br>
+  </div>
+  <label>メインカテゴリ:</label><br>
+  <input type="radio" name="mainCategory" value="食費" onchange="showSubCategory(this.value)">食費<br>
+  <input type="radio" name="mainCategory" value="趣味" onchange="showSubCategory(this.value)">趣味<br>
+  <div id="subCategory" style="display: none;">
+    <label>サブカテゴリ:</label><br>
+    <div id="食費" style="display: none;">
+      <input type="radio" name="subCategory" value="学食">学食<br>
+      <input type="radio" name="subCategory" value="プライベート">プライベート<br>
+      <input type="radio" name="subCategory" value="集団">集団<br>
+    </div>
+    <div id="趣味" style="display: none;">
+      <input type="radio" name="subCategory" value="服">服<br>
+      <input type="radio" name="subCategory" value="機械">機械<br>
+      <input type="radio" name="subCategory" value="もみじ">もみじ<br>
+    </div>
+  </div>
+  <input type="hidden" name="entry.1627175509" id="entry0003" value="">
+  <input type="hidden" name="entry.213784185" id="entry0004" value="">
+  <input type="submit" value="送信">
+  <iframe name="hidden_iframe" style="display:none"></iframe>
+</form>
+<script>
+function showOtherOption(value) {
+  var otherOption = document.getElementById("otherOption");
+  var pulldown = document.getElementById("pulldown")
+  if (value === "その他") {
+    otherOption.style.display = "block";
+    pulldown.name = "";
+  } else {
+    otherOption.style.display = "none";
+    pulldown.name = "entry.155554485";
+  }
+}
+</script>
+<script>
+  function showSubCategory(mainCategory) {
+    var subCategory1 = document.getElementById("subCategory");
+    subCategory1.style.display = "block";
+    var subCategories1 = document.getElementsByName("subCategory");
+    for (var i = 0; i < subCategories1.length; i++) {
+      subCategories1[i].parentElement.style.display = "none";
+    }
+    document.getElementById(mainCategory).style.display = "block";
+  }
+</script>
+<script>
+  function submitForm() {
+    var mainCategory = document.querySelector('input[name="mainCategory"]:checked');
+    var subCategory2 = document.querySelector('input[name="subCategory"]:checked');
+    if(mainCategory){
+        document.getElementById("entry0003").value = mainCategory.value;
+    }
+    if(subCategory2) {
+        document.getElementById("entry0004").value = subCategory2.value;
+    }
+  }
+</script>
